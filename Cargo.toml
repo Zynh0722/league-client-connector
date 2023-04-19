@@ -12,6 +12,7 @@ keywords = ["league", "legends", "league-of-legends", "lol", "lcu-connector"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [features]
+full = ["serde", "lockfile_path"]
 serde = ["dep:serde"]
 lockfile_path = []
 
