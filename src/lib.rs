@@ -70,7 +70,7 @@ impl LeagueClientConnector {
             address,
             b64_auth,
             #[cfg(feature = "lockfile_path")]
-            lockfile: path,
+            path,
         })
     }
 
