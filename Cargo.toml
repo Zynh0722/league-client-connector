@@ -1,6 +1,6 @@
 [package]
 name = "league-client-connector"
-version = "0.2.0"
+version = "0.2.1"
 authors = ["Victor Quiroz <victorhqc@gmail.com>"]
 edition = "2018"
 readme = "README.md"
@@ -13,14 +13,10 @@ keywords = ["league", "legends", "league-of-legends", "lol", "lcu-connector"]
 
 [features]
 serde = ["dep:serde"]
+lockfile_path = []
 
 [dependencies]
 base64 = "0.12"
 regex = "1"
-<<<<<<< HEAD
-serde = { version = "1.0", features = ["derive"] }
-snafu = "0.6"
-=======
 snafu = "0.6"
 serde = { version = "1.0", features = ["derive"], optional = true }
->>>>>>> serde-feature-branch
