@@ -70,7 +70,7 @@ impl LeagueClientConnector {
             address,
             b64_auth,
             #[cfg(feature = "lockfile_path")]
-            lockfile: path,
+            path,
         })
     }
 
@@ -177,7 +177,7 @@ pub struct RiotLockFile {
     pub address: String,
     pub b64_auth: String,
     #[cfg(feature = "lockfile_path")]
-    pub lockfile: PathBuf,
+    pub path: PathBuf,
 }
 
 pub type Result<T, E = LeagueConnectorError> = std::result::Result<T, E>;
