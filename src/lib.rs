@@ -47,7 +47,7 @@ impl LeagueClientConnector {
 
         let lockfile = path.to_str().ok_or(LeagueConnectorError::EmptyPath {})?;
 
-        let contents = fs::read_to_string(lockfile).context(UnableToRead)?;
+        let contents = fs::read_to_string(&lockfile).context(UnableToRead)?;
 
         let pieces: Vec<&str> = contents.split(":").collect();
 
@@ -69,6 +69,8 @@ impl LeagueClientConnector {
             username,
             address,
             b64_auth,
+            #[cfg(feature = "lockfile_path")]
+            lockfile: path,
         })
     }
 
@@ -174,6 +176,8 @@ pub struct RiotLockFile {
     pub username: String,
     pub address: String,
     pub b64_auth: String,
+    #[cfg(feature = "lockfile_path")]
+    pub lockfile: PathBuf,
 }
 
 pub type Result<T, E = LeagueConnectorError> = std::result::Result<T, E>;
