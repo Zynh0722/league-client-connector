@@ -77,7 +77,7 @@ impl LeagueClientConnector {
             address,
             b64_auth,
             #[cfg(feature = "lockfile_path")]
-            path: path.to_owned(),
+            path: path.as_ref().to_owned(),
         })
     }
 
