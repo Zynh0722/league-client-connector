@@ -16,7 +16,7 @@ use regex::Regex;
 use snafu::{ResultExt, Snafu};
 use std::env::consts::OS;
 use std::fs;
-use std::path::PathBuf;
+use std::path::{PathBuf, Path};
 use std::process::{Command, Stdio};
 
 #[cfg(feature = "serde")]
@@ -45,7 +45,14 @@ impl LeagueClientConnector {
         let mut path = PathBuf::from(Self::get_path()?);
         path.push("lockfile");
 
-        let lockfile = path.to_str().ok_or(LeagueConnectorError::EmptyPath {})?;
+        Self::parse_lockfile_from_path(path)
+    }
+
+    pub fn parse_lockfile_from_path<P>(path: P) -> Result<RiotLockFile>
+    where
+        P: AsRef<Path>,
+    {
+        let lockfile = path.as_ref().to_str().ok_or(LeagueConnectorError::EmptyPath {})?;
 
         let contents = fs::read_to_string(&lockfile).context(UnableToRead)?;
 
